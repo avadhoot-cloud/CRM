@@ -1,5 +1,7 @@
 package com.example.gymproj;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbConnect {
 
@@ -69,6 +71,33 @@ public class DbConnect {
         }
             return false;
         }
+
+    // Add a new method to retrieve member names or IDs
+    public static List<FeesController.MemberData> getMemberNamesAndIDs() {
+        List<FeesController.MemberData> memberList = new ArrayList<>();
+
+        // SQL query to retrieve member names or IDs (adjust the query as per your database schema)
+        String query = "SELECT id,fname FROM member";
+
+        try (Connection connection = getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                // Replace "name_or_id_column" with the actual column name that contains member names or IDs
+                int memberId = resultSet.getInt("id");
+                String memberName = resultSet.getString("fname");
+                // Create a MemberData object and add it to the list
+                FeesController.MemberData memberData = new FeesController.MemberData(memberName, memberId);
+                memberList.add(memberData);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle any database-related exceptions here
+        }
+
+        return memberList;
+    }
         public static void printSQLException(SQLException ex) {
             for (Throwable e: ex) {
                 if (e instanceof SQLException) {

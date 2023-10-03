@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import com.example.gymproj.MemberModel;
@@ -48,8 +45,9 @@ public class ShowMemberController {
         // Create the "Edit" button column
         TableColumn<MemberModel, Void> editColumn = new TableColumn<>("Edit");
         editColumn.setPrefWidth(100);
+
         editColumn.setCellFactory(param -> new TableCell<MemberModel, Void>() {
-            private final Button editButton = new Button("Edit");
+                    private final Button editButton = new Button("Edit");
 
             {
                 editButton.setOnAction(event -> {
@@ -57,6 +55,28 @@ public class ShowMemberController {
                     openEditMemberView(member); // Call the method to open the Edit Member view
                 });
             }
+                        @Override
+                        protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(editButton);
+                        }
+
+                     }
+                    });
+        //create the "delete" button column
+        TableColumn<MemberModel, Void> deleteColumn = new TableColumn<>("Delete");
+        deleteColumn.setPrefWidth(100);
+        deleteColumn.setCellFactory(param -> new TableCell<MemberModel, Void>() {
+                    private final Button deleteButton = new Button("Delete");
+                    {
+                        deleteButton.setOnAction(event -> {
+                            MemberModel member = getTableView().getItems().get(getIndex());
+                            deleteMember(member); // Call the method to delete the member
+                        });
+                    }
 
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -64,13 +84,16 @@ public class ShowMemberController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(editButton);
+                    setGraphic(deleteButton);
                 }
             }
         });
 
         // Add the "Edit" button column to the TableView
         tableView.getColumns().add(editColumn);
+
+        // Add the "Delete" button column to the TableView
+        tableView.getColumns().add(deleteColumn);
 
         try {
             connection = DbConnect.getConnection();
@@ -106,6 +129,37 @@ public class ShowMemberController {
         }
     }
 
+    private void deleteMember(MemberModel member) {
+        // Query to delete a member by ID
+        String deleteQuery = "DELETE FROM member WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+            preparedStatement.setInt(1, member.getId());
+            int rowCount = preparedStatement.executeUpdate();
+
+            if (rowCount > 0) {
+                // Member deleted successfully
+                // Member deleted successfully
+                showAlert(Alert.AlertType.INFORMATION, "Member Deleted", "Member deleted successfully.");
+                refreshTableView(); // Refresh the TableView after deletion
+
+            } else {
+                // No rows were affected, member not found
+                showAlert(Alert.AlertType.ERROR, "Member Not Found", "Member not found.");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     public void refreshTableView() {
         tableView.getItems().clear(); // Clear existing data
         loadMemberData(); // Load fresh data from the database
@@ -125,8 +179,8 @@ public class ShowMemberController {
                 LocalDate dob = resultSet.getDate("dob").toLocalDate();
                 String gender = resultSet.getString("gend");
                 String mobile = resultSet.getString("contact");
-
-                memberList.add(new MemberModel(id, fullName, dob, gender, mobile));
+                String batch = resultSet.getString("batch");
+                memberList.add(new MemberModel(id, fullName, dob, gender, mobile,batch));
             }
 
             tableView.getItems().addAll(memberList);

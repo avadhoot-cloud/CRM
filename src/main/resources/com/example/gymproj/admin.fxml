@@ -7,13 +7,16 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymproj.AdminController">
    <children>
-      <Label layoutX="193.0" layoutY="94.0" prefHeight="34.0" prefWidth="228.0" text="Admin Panel">
+      <Label layoutX="193.0" layoutY="28.0" prefHeight="34.0" prefWidth="228.0" text="Admin Panel">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Button fx:id="memberButton" layoutX="65.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="46.0" prefWidth="187.0" text="Add Member" />
-      <Button layoutX="307.0" layoutY="154.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="206.0" text="Edit Member" />
-      <Button fx:id="buttonShow" layoutX="65.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="46.0" prefWidth="187.0" text="Show Member" />
+      <Button fx:id="memberButton" layoutX="59.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="46.0" prefWidth="187.0" text="Add Member" />
+      <Button fx:id="batchButton" layoutX="300.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="46.0" prefWidth="206.0" text="Batches" />
+      <Button fx:id="buttonShow" layoutX="59.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="46.0" prefWidth="187.0" text="Show Member" />
+      <Button fx:id="trainerButton" layoutX="307.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="46.0" prefWidth="206.0" text="Add Trainer" />
+      <Button fx:id="attendanceButton" layoutX="59.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="46.0" prefWidth="187.0" text="Attendance" />
+      <Button layoutX="307.0" layoutY="265.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="206.0" text="Fees" />
    </children>
 </Pane>

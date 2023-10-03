@@ -19,6 +19,15 @@ public class AdminController implements Initializable{
     Button memberButton;
     @FXML
     Button buttonShow;
+    @FXML
+    Button batchButton;
+    @FXML
+    Button trainerButton;
+
+    @FXML
+    Button attendanceButton;
+    @FXML
+    Button attendReportButton;
 
     //my bad - the freaking mouse event
     @FXML
@@ -28,7 +37,14 @@ public class AdminController implements Initializable{
         else if(mouseEvent.getSource()== buttonShow) {
             loadStage("showMember.fxml");
             }
-
+        else if(mouseEvent.getSource()== batchButton)
+            loadStage("batch.fxml");
+        else if(mouseEvent.getSource()== trainerButton)
+            loadStage("trainer.fxml");
+        else if(mouseEvent.getSource()==attendanceButton)
+            loadStage("attendance.fxml");
+        else if(mouseEvent.getSource()==attendReportButton)
+            loadStage("AttendanceRecords.fxml");
         }
 
 

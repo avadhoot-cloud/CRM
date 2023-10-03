@@ -7,12 +7,15 @@ import java.util.Date;
 
     public class MemberModel {
         private int id;
+        private int memberid;
         private String fullName;
         private LocalDate dob;
         private String gender;
         private String mobile;
 
-        public MemberModel(int id, String fullName, LocalDate dob, String gender, String mobile) {
+        private String batch;
+
+        public MemberModel(int id, String fullName, LocalDate dob, String gender, String mobile,String batch) {
             this.id = id;
             this.fullName = fullName;
             this.dob = dob;
@@ -22,6 +25,14 @@ import java.util.Date;
 
         // Getters and setters for the properties
 
+
+        public int getMemberId() {
+            return memberid;
+        }
+
+        public void setMemberId(int memberid) {
+            this.memberid = memberid;
+        }
 
         public int getId() {
             return id;
@@ -61,6 +72,14 @@ import java.util.Date;
 
         public void setMobile(String mobile) {
             this.mobile = mobile;
+        }
+
+        public String getBatch() {
+            return batch;
+        }
+
+        public void setBatch(String batch) {
+            this.batch = batch;
         }
     }
 
