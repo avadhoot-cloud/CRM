@@ -94,4 +94,6 @@ public class RegisterController {
         // Your code to handle the action goes here
     }
 
+    public void onHelloButtonClick(ActionEvent actionEvent) {
+    }
 }
