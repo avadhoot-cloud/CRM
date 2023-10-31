@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymproj.AttendanceRecordsController">
+   <children>
+      <Label layoutX="165.0" layoutY="45.0" prefHeight="18.0" prefWidth="258.0" text="Attendance Records">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TableView fx:id="attendanceTableView" layoutX="76.0" layoutY="269.0" prefHeight="242.0" prefWidth="497.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="237.0" text="Date" />
+          <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="193.0" text="Status" />
+        </columns>
+      </TableView>
+      <Label layoutX="98.0" layoutY="117.0" text="Member Id" />
+      <TextField fx:id="textid" layoutX="274.0" layoutY="113.0" />
+      <Label layoutX="98.0" layoutY="170.0" text="Month" />
+      <ComboBox fx:id="monthComboBox" layoutX="271.0" layoutY="166.0" prefWidth="150.0" promptText="select month" />
+      <Button fx:id="searchButton" layoutX="244.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleSearchButtonClick" text="Search" />
+   </children>
+</Pane>
