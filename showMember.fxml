@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="556.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymproj.ShowMemberController">
+   <children>
+      <Pane layoutX="6.0" layoutY="33.0" prefHeight="481.0" prefWidth="655.0">
+         <children>
+            <ImageView fitHeight="667.0" fitWidth="710.0" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Desktop/Screenshot%202023-10-31%20at%208.51.09%E2%80%AFPM.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="236.0" layoutY="64.0" prefHeight="45.0" prefWidth="201.0" text="Member List" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableView" layoutX="98.0" layoutY="136.0" prefHeight="333.0" prefWidth="457.0">
+              <columns>
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+                <TableColumn fx:id="fullNameColumn" prefWidth="114.0" text="Full Name" />
+                  <TableColumn fx:id="dobColumn" prefWidth="93.0" text="DateofBirth" />
+                  <TableColumn fx:id="genderColumn" prefWidth="78.0" text="Gender" />
+                  <TableColumn fx:id="mobileColumn" prefWidth="122.0" text="Contact" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <ImageView fitHeight="43.0" fitWidth="669.0" layoutX="-3.0" layoutY="-8.0">
+         <image>
+            <Image url="@../Desktop/tagg.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
